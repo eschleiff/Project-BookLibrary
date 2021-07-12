@@ -1,11 +1,20 @@
 var Book = require('../models/books.model');
 
-exports.index = (req, res, next) => {
-    res.send('NOT IMPLEMENTED: Site Home Page');
+exports.index = async (req, res, next) => {
+
+    try {
+        let bookCount = await Book.countDocuments({});
+        res.render('index', { title: 'Local Library Home', data: bookCount });
+    } catch (error) {
+        res.render('index', { title: 'Local Library Home', error, bookCount });
+    }
+
 };
 
-exports.book_list = (req, res, next) => {
-    res.send('NOT IMPLEMENTED');
+exports.book_list = async (req, res, next) => {
+    let bookList = await Book.find({}).lean()
+
+    res.render('book_list', { title: 'Book List', bookList });
 };
 
 exports.book_detail = (req, res, next) => {
