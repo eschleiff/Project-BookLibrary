@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bookSchema = mongoose.Schema({
     title: String,
     author: String,
+    summary: String,
     pagesRead: Number,
     read: Boolean,
 }, { timestamps: true }
