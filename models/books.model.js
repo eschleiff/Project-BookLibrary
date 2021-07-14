@@ -12,7 +12,7 @@ const bookSchema = mongoose.Schema({
 bookSchema
     .virtual('url')
     .get(() => {
-        return '/catalog//book' + this._id;
+        return '/catalog/book' + this._id;
     });
 
 const Book = mongoose.model('books', bookSchema);

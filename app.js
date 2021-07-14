@@ -6,13 +6,9 @@ var logger = require('morgan');
 const catalogRouter = require('./routes/catalog');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+require('./bin/www');
 
 var app = express();
-
-// routes setup
-app.use('/catalog', catalogRouter);
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,10 +16,12 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes setup
+app.use('/catalog', catalogRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

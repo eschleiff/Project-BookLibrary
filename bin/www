@@ -93,7 +93,6 @@ function onListening() {
 
 // Connect to MongoDB
 mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-mongoose.Promise = global.Promise;
 mongoose.connection.on('open', () => {
   console.log(`Now connected to Database.`);
 })
